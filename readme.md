@@ -46,3 +46,8 @@ Payload example: {
                  }
 NOTE:
     User's access code doesn't have any privileges to edit (modify) customers. This option is only available for ADMIN role.
+
+    BTW: You have a fantastic option to keep track on what's going on in the database using h2 console by hitting an api endpoint:
+    http://localhost:8080/h2_console
+
+  and pressing button: Connect for provided credentials which are stored in application.properties.
