@@ -15,6 +15,7 @@ import java.util.List;
  */
 public class CustomUserDetails implements UserDetails {
 
+    public static final String ROLE_ = "ROLE_";
     private Collection<? extends GrantedAuthority> authorities;
     private String password;
     private String username;
@@ -35,8 +36,8 @@ public class CustomUserDetails implements UserDetails {
         for (Role role : roles) {
             String name = role.getName().toUpperCase();
             //Make sure that all roles start with "ROLE_"
-            if (!name.startsWith("ROLE_"))
-                name = "ROLE_" + name;
+            if (!name.startsWith(ROLE_))
+                name = ROLE_ + name;
             authorities.add(new SimpleGrantedAuthority(name));
         }
         return authorities;

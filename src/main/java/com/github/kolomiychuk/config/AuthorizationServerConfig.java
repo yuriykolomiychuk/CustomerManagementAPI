@@ -19,6 +19,15 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+    public static final String USER = "USER";
+    public static final String ADMIN = "ADMIN";
+    public static final String MY_TRUSTED_CLIENT = "my-trusted-client";
+    public static final String CLIENT_CREDENTIALS = "client_credentials";
+    public static final String PASSWORD = "password";
+    public static final String READ = "read";
+    public static final String WRITE = "write";
+    public static final String OAUTH2_RESOURCE = "oauth2-resource";
+    public static final String IS_AUTHENTICATED = "isAuthenticated()";
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -43,11 +52,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("my-trusted-client")
-                .authorizedGrantTypes("client_credentials", "password")
-                .authorities("USER").scopes("read")
-                .authorities("ADMIN").scopes("write", "read")
-                .resourceIds("oauth2-resource").accessTokenValiditySeconds(5000).secret("secret");
+        clients.inMemory().withClient(MY_TRUSTED_CLIENT)
+                .authorizedGrantTypes(CLIENT_CREDENTIALS, PASSWORD)
+                .authorities(USER).scopes(READ)
+                .authorities(ADMIN).scopes(WRITE, READ)
+                .resourceIds(OAUTH2_RESOURCE).accessTokenValiditySeconds(5000).secret("secret");
     }
 
     /**
@@ -58,7 +67,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
-        security.checkTokenAccess("isAuthenticated()");
+        security.checkTokenAccess(IS_AUTHENTICATED);
     }
 
 
