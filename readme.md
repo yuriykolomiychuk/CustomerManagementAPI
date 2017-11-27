@@ -9,7 +9,8 @@ Response example:
        "expires_in": 4999,
        "scope": "read write"
     }
-2)Add customer to embeded h2 database using endpoint:
+
+2) Add customer to embeded h2 database using endpoint:
 http://localhost:8080/customers/add?access_token=59df7645-c90a-4a1d-a795-9bf8c8530f39 with method POST
 and payload like:
     {"name":"John",
@@ -24,7 +25,7 @@ http://localhost:8080/customers/findall?access_token=59df7645-c90a-4a1d-a795-9bf
 4) Find customer by id using endpoint:
 http://localhost:8080/customers/findbyid?id=3&access_token=59df7645-c90a-4a1d-a795-9bf8c8530f39. Method GET.
 
-5)Find customer by name using endpoint:
+5) Find customer by name using endpoint:
 http://localhost:8080/customers/findbyname?name=John&access_token=59df7645-c90a-4a1d-a795-9bf8c8530f39 Method GET.
 
 Also if you get access token for user role ADMIN using endpoint:
@@ -45,9 +46,12 @@ Payload example: {
                   "address":"New York"
                  }
 NOTE:
-    User's access code doesn't have any privileges to edit (modify) customers. This option is only available for ADMIN role.
+    User's access code doesn't have any privileges to edit (modify) customers. This option is only
+    available for ADMIN role.
 
-    BTW: You have a fantastic option to keep track on what's going on in the database using h2 console by hitting an api endpoint:
+    BTW: You have a fantastic option to keep track on what's going on in the database using h2 console by
+    hitting an api endpoint:
+
     http://localhost:8080/h2_console
 
-  and pressing button: Connect for provided credentials which are stored in application.properties.
+and pressing button: Connect for provided credentials which are stored in application.properties.
