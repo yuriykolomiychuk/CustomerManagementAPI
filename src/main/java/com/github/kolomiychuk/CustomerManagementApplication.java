@@ -18,6 +18,8 @@ import java.util.Arrays;
 @SpringBootApplication
 public class CustomerManagementApplication {
 
+	public static final String USER = "user";
+	public static final String ADMIN = "admin";
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -36,7 +38,8 @@ public class CustomerManagementApplication {
 	public void authenticationManager(AuthenticationManagerBuilder builder, UserRepository repository, UserService service) throws Exception {
 		//Setup a default user if db is empty
 		if (repository.count()==0)
-			service.save(new User("user", "user", Arrays.asList(new Role("USER"), new Role("ACTUATOR"))));
+			service.save(new User(USER, USER, Arrays.asList(new Role("USER"))));
+			service.save(new User(ADMIN, ADMIN, Arrays.asList(new Role("ADMIN"), new Role("USER"))));
 		builder.userDetailsService(userDetailsService(repository)).passwordEncoder(passwordEncoder);
 	}
 
